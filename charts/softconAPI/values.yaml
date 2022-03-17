@@ -1,7 +1,7 @@
 # Default values for softconAPI.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+enabled: true
 replicaCount: 1
 
 image:
@@ -38,7 +38,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false
