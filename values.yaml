@@ -7,7 +7,7 @@
 softconAPI:
   replicaCount: 3
   labelapp: softcon-app
-  group: backend
+  version: v1.0.0
   genericApp:
     name: softcon
     container:
@@ -15,18 +15,14 @@ softconAPI:
       port: 5000
     ingress:
       name: softcon
-      annotations:
-        - key: nginx.ingress.kubernetes.io/enable-cors
-          value: "true"
-        - key: nginx.ingress.kubernetes.io/cors-allow-methods
-          value: "PUT, GET, POST, OPTIONS"
-        - key: nginx.ingress.kubernetes.io/cors-allow-origin
-          value: "*"
-        - key: nginx.ingress.kubernetes.io/cors-allow-credentials
-          value: "true"
       hosts:
-        - host: chart-example.local
-          paths: []
+        - host: softcon-app-helm.com
+          paths: 
+              - path: /
+                pathType: Prefix
+                backend:
+                  serviceName: softcon-nodeport-service
+                  servicePort: 8081
     autoscaling:
       enabled: false
       minReplicas: 1
@@ -41,7 +37,7 @@ softconAPI:
 softconUI:
   replicaCount: 3
   labelapp: softcon-ui-app
-  group: frontend
+  version: v1.0.0
   genericApp:
     name: softcon-ui
     container:
@@ -49,9 +45,14 @@ softconUI:
       port: 3000
     ingress:
       name: softcon-ui
-    hosts:
-        - host: chart-example.local
-          paths: []
+      hosts:
+          - host: softcon-app-ui-helm.com
+            paths: 
+              - path: /
+                pathType: Prefix
+                backend:
+                  serviceName: softcon-ui-nodeport-service
+                  servicePort: 80
   autoscaling:
       enabled: false
       minReplicas: 1

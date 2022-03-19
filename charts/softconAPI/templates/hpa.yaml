@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "softconAPI.fullname" . }}
+  name: {{ .Values.genericApp.name }}
   labels:
-    {{- include "softconAPI.labels" . | nindent 4 }}
+    {{ .Values.labelapp }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "softconAPI.fullname" . }}
+    name: {{ .Values.genericApp.name }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
