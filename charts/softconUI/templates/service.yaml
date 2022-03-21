@@ -1,15 +1,17 @@
+{{- if .Values.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "softconUI.fullname" . }}
+  name: {{ .Values.genericApp.name }}-service
   labels:
-    {{- include "softconUI.labels" . | nindent 4 }}
+    app: {{ .Values.labelapp }}
+    group: {{ .Values.group }}
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.genericApp.service.type }}
+  selector:             
+    app: {{ .Values.genericApp.name }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    {{- include "softconUI.selectorLabels" . | nindent 4 }}
+    - protocol: {{ .Values.genericApp.service.protocol }}
+      port: {{ .Values.genericApp.service.port }}
+      targetPort: {{ .Values.genericApp.container.port }}
+{{- end }}
