@@ -25,8 +25,8 @@ genericApp:
               backend:
                 serviceName: softcon-nodeport-service
                 servicePort: 8081
-  autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80

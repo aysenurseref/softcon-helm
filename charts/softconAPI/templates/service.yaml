@@ -5,7 +5,6 @@ metadata:
   name: {{ .Values.genericApp.name }}-service
   labels:
     app: {{ .Values.labelapp }}
-    group: {{ .Values.group }}
 spec:
   type: {{ .Values.genericApp.service.type }}
   selector:             
