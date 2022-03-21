@@ -5,7 +5,6 @@ metadata:
   name: {{ .Values.genericApp.name }}-deployment
   labels:
     app: {{ .Values.labelapp }}
-    version: {{ .Values.version }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
