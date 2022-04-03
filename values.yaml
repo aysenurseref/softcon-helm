@@ -21,7 +21,7 @@ softconAPI:
               - path: /
                 pathType: Prefix
                 backend:
-                  serviceName: softcon-nodeport-service
+                  serviceName: softcon-loadbalance-service
                   servicePort: 8081
     autoscaling:
       enabled: false
@@ -51,7 +51,7 @@ softconUI:
               - path: /
                 pathType: Prefix
                 backend:
-                  serviceName: softcon-ui-nodeport-service
+                  serviceName: softcon-ui-loadbalance-service
                   servicePort: 80
   autoscaling:
       enabled: false
